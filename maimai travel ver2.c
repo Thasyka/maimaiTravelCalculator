@@ -1,4 +1,4 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -153,7 +153,7 @@ while (1)
 			}
 		}
 		switch (setin)
-		{	
+		{
 			case 1:
 				printf("Input new value: ");
 				scanf("%d",c1);
@@ -218,27 +218,37 @@ void readsave(int *c1, int *c2, int *c3, int *c4, int *c5, float *acc)
 	if (mn == NULL)
 	{
 		mn = fopen("maitraveldata.txt", "w");
-		fprintf(mn, "c1= 1\n"			
-					"c2= 1\n"			
+		fprintf(mn, "c1= 1\n"
+					"c2= 1\n"
 					"c3= 1\n"
 					"c4= 1\n"
 					"c5= 1\n"
 					"acc= 101");
+		*c1=1;	//temporary fix via assigning the values manually. pls help
+		*c2=1;
+		*c3=1;
+		*c4=1;
+		*c5=1;
+		*acc=101;
+		fclose(mn);
 	}
-	fscanf(mn, "c1= %d\n", &*c1);
-	fscanf(mn, "c2= %d\n", &*c2);
-	fscanf(mn, "c3= %d\n", &*c3);
-	fscanf(mn, "c4= %d\n", &*c4);
-	fscanf(mn, "c5= %d\n", &*c5);
-	fscanf(mn, "acc= %f", &*acc);
-	fclose(mn);
+	else
+	{
+		fscanf(mn, "c1= %d\n", &*c1);
+		fscanf(mn, "c2= %d\n", &*c2);
+		fscanf(mn, "c3= %d\n", &*c3);
+		fscanf(mn, "c4= %d\n", &*c4);
+		fscanf(mn, "c5= %d\n", &*c5);
+		fscanf(mn, "acc= %f", &*acc);
+		fclose(mn);
+	}
 }
 
 void writesave(int c1, int c2, int c3, int c4, int c5, float acc)
 {
 	FILE *mn = fopen("maitraveldata.txt", "w");
-	fprintf(mn, "c1= %d\n"			
-				"c2= %d\n"			
+	fprintf(mn, "c1= %d\n"
+				"c2= %d\n"
 				"c3= %d\n"
 				"c4= %d\n"
 				"c5= %d\n"
@@ -258,4 +268,3 @@ bool strinput(char x[21])
 	if (strcmp(x, lncom)==0) return 1;
 	else return 0;
 }
-
