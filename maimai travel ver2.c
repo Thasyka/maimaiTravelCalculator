@@ -66,6 +66,7 @@ int main()
 				break;
 			case 2:
 				setlevelacc(&c1,&c2,&c3,&c4,&c5,&acc);
+				writesave(c1,c2,c3,c4,c5,acc);
 				break;
 			case 0:
 				break;
@@ -185,7 +186,6 @@ void setlevelacc(int *c1, int *c2, int *c3, int *c4, int *c5, float *acc)
 			}
 		if (setin==0) break;
 	}
-	writesave();
 }
 
 int intcheck()
