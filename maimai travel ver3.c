@@ -80,7 +80,7 @@ int main()
 
 void calculator(int c1, int c2, int c3, int c4, int c5, float acc)
 {
-	int distance, target, song;
+	int distance, target, song=0;
 	cls();
 	printf("Please enter your current distance: ");
 	scanf("%d",&distance);
