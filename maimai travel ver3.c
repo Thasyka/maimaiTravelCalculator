@@ -15,6 +15,7 @@ int lvl(int x);
 int lvlup(int x);
 void cls();
 bool strinput(char x[21]);
+float acccheck();
 
 
 int main()
@@ -29,7 +30,7 @@ int main()
 		cls();
 		printf(	"=============================\n"
 				" maimai traveling calculator \n"
-				"           Ver 2.0           \n"
+				"           Ver 3.0           \n"
 				" Made by Thasyka (T-Koroshi) \n"
 				"   Press any key to enter.   \n"
 				"=============================\n");
@@ -178,7 +179,7 @@ void setlevelacc(int *c1, int *c2, int *c3, int *c4, int *c5, float *acc)
 					break;
 				case 6:
 					printf("Input new value: ");
-					scanf("%f",acc);	//find a way to idiot-proof this
+					*acc=acccheck();
 					break;
 				case 0:
 					break;
@@ -206,6 +207,56 @@ int intcheck()
 			if (x < 0 || x > 999)
 			{
 				printf("Invalid value. Please enter again (0-999): ");
+			}
+			else return x;
+		}
+	}
+}
+
+float acccheck()
+{
+	char accstring[10];
+	float x;
+	int i, deci, error, accascii;
+	while (1)
+	{
+		strcpy(accstring, "\0");
+		deci = 0;
+		error = 0;
+		scanf("%s",accstring);
+		for(i=0;i<10;i++)
+		{
+			accascii = accstring[i];
+			if (!('0'<=accascii && accascii<='9'))
+			{
+				if (accascii=='.')
+				{
+					if (deci==0) deci++;
+					else
+					{
+					printf("Invalid input. Please enter again: ");
+					error++;
+					break;
+					}
+				}
+				else
+				{
+					if (accascii=='\0') break;
+					else
+					{
+						printf("Invalid input. Please enter again: ");
+						error++;
+						break;
+					}
+				}
+			}
+		}
+		if (error==0)
+		{
+			x = atof(accstring);
+			if (x < 0 || x > 101)
+			{
+				printf("Invalid value. Please enter again (0-101): ");
 			}
 			else return x;
 		}
